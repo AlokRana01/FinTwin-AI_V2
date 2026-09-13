@@ -112,7 +112,7 @@ class LLMProvider(ABC):
         *,
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         timeout: float = 30.0,
         model: Optional[str] = None,
     ) -> LLMResponse:
@@ -158,7 +158,7 @@ class GroqProvider(LLMProvider):
         *,
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         timeout: float = 30.0,
         model: Optional[str] = None,
     ) -> LLMResponse:
@@ -279,7 +279,7 @@ class GeminiProvider(LLMProvider):
         *,
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         timeout: float = 30.0,
         model: Optional[str] = None,
     ) -> LLMResponse:
@@ -410,7 +410,7 @@ class MockLLMProvider(LLMProvider):
         *,
         system_prompt: Optional[str] = None,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         timeout: float = 30.0,
         model: Optional[str] = None,
     ) -> LLMResponse:
@@ -485,7 +485,7 @@ class LLMService:
         provider: Optional[str] = None,
         model: Optional[str] = None,
         temperature: float = 0.7,
-        max_tokens: int = 1024,
+        max_tokens: int = 2048,
         timeout: Optional[float] = None,
         fallback_providers: Optional[Sequence[str]] = None,
     ) -> LLMResponse:
