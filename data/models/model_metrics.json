@@ -1,0 +1,19 @@
+{
+  "savings": {
+    "MAE": 497.28,
+    "RMSE": 1295.47,
+    "R2": 0.9997,
+    "CV_R2_mean": 0.9997,
+    "CV_R2_std": 0.0,
+    "train_size": 192000,
+    "test_size": 48000
+  },
+  "net_worth": {
+    "MAE": 4538257.42,
+    "RMSE": 7995491.15,
+    "R2": 0.7204,
+    "CV_R2_mean": 0.7186,
+    "CV_R2_std": 0.0025,
+    "horizon_months": 6
+  }
+}

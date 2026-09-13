@@ -1,0 +1,44 @@
+{
+  "clusters": [
+    {
+      "Personality": "Saver",
+      "Count": 3054,
+      "Savings Ratio": "36.15%",
+      "Expense Ratio": "60.66%",
+      "Investment Ratio": "13.08%",
+      "Debt Ratio": "3.20%"
+    },
+    {
+      "Personality": "Investor",
+      "Count": 2475,
+      "Savings Ratio": "50.06%",
+      "Expense Ratio": "47.90%",
+      "Investment Ratio": "22.97%",
+      "Debt Ratio": "2.04%"
+    },
+    {
+      "Personality": "Balanced Planner",
+      "Count": 2111,
+      "Savings Ratio": "59.29%",
+      "Expense Ratio": "35.81%",
+      "Investment Ratio": "14.78%",
+      "Debt Ratio": "4.90%"
+    },
+    {
+      "Personality": "Spender",
+      "Count": 1505,
+      "Savings Ratio": "15.28%",
+      "Expense Ratio": "75.56%",
+      "Investment Ratio": "5.52%",
+      "Debt Ratio": "9.78%"
+    },
+    {
+      "Personality": "Debt Heavy",
+      "Count": 855,
+      "Savings Ratio": "29.55%",
+      "Expense Ratio": "34.76%",
+      "Investment Ratio": "11.64%",
+      "Debt Ratio": "35.79%"
+    }
+  ]
+}
