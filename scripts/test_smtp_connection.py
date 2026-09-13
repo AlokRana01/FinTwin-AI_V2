@@ -17,7 +17,7 @@ _load_dotenv()
 
 from utils.email_service import get_smtp_config
 
-def test_smtp():
+def run_smtp_check():
     cfg = get_smtp_config()
     print("Testing SMTP Connection...")
     print(f"Host     : {cfg['host']}")
@@ -50,4 +50,4 @@ def test_smtp():
         return False
 
 if __name__ == "__main__":
-    test_smtp()
+    run_smtp_check()

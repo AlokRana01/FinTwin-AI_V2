@@ -15,7 +15,7 @@
 [![SHAP](https://img.shields.io/badge/SHAP-Explainable_AI-7C3AED?style=for-the-badge)](https://shap.readthedocs.io)
 [![SQLite](https://img.shields.io/badge/SQLite-Persistence-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
 [![Architecture](https://img.shields.io/badge/Architecture-6--Agent_System-10B981?style=for-the-badge)](#-multi-agent-architecture)
-[![Tests](https://img.shields.io/badge/Tests-375_Passed-2EA44F?style=for-the-badge)](#-testing)
+[![Tests](https://img.shields.io/badge/Tests-374_Passed-2EA44F?style=for-the-badge)](#-testing)
 [![Status](https://img.shields.io/badge/Status-Production_Ready-111827?style=for-the-badge)](#-project-status)
 
 <br/>
@@ -538,7 +538,7 @@ FinTwin-AI_V2/
 | **Authentication** | Argon2-based password hashing |
 | **PDF Reports** | ReportLab |
 | **AI Providers** | Groq, Google Gemini (with deterministic fallbacks) |
-| **Testing** | Pytest (26 test suites, 375 passed) |
+| **Testing** | Pytest (26 test suites, 374 passed, 0 warnings) |
 | **Model Storage** | Pre-trained JSON artifacts |
 | **Architecture** | Custom lightweight multi-agent orchestration |
 
@@ -651,8 +651,8 @@ pytest -q
 Current validated baseline:
 
 ```text
-375 passed
-1 warning
+374 passed
+0 warning
 0 failed
 0 skipped
 ```
@@ -766,7 +766,7 @@ Authoritative results carry provenance information so the system can distinguish
 | Security & Session Isolation | ✅ Validated |
 | Quota Concurrency | ✅ Validated |
 | Performance Optimization | ✅ Validated |
-| Automated Tests | ✅ 375 Passed |
+| Automated Tests | ✅ 374 Passed |
 | Browser Smoke Testing | ✅ Validated |
 | Production Deployment Validation | ✅ Complete |
 
