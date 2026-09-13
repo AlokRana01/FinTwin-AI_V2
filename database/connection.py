@@ -53,25 +53,35 @@ def get_db_cursor():
 
 def _load_dotenv() -> None:
     """Reads the project-root .env file and injects variables into os.environ.
+    Also synchronizes from st.secrets if running inside Streamlit Cloud / deployment.
     Only sets keys that are not already present, so real environment variables
     always take precedence over the .env file.
     """
     env_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env")
-    if not os.path.exists(env_path):
-        return
+    if os.path.exists(env_path):
+        try:
+            with open(env_path, "r", encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    key, _, val = line.partition("=")
+                    key = key.strip()
+                    val = val.strip().strip("'\"")
+                    if key and key not in os.environ:
+                        os.environ[key] = val
+        except Exception:
+            pass  # Non-fatal; app still starts with the environment defaults
+
+    # Synchronize secrets from Streamlit Cloud / local secrets.toml into os.environ
     try:
-        with open(env_path, "r", encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
-                if not line or line.startswith("#") or "=" not in line:
-                    continue
-                key, _, val = line.partition("=")
-                key = key.strip()
-                val = val.strip().strip("'\"")
-                if key and key not in os.environ:
-                    os.environ[key] = val
+        import streamlit as st
+        if hasattr(st, "secrets"):
+            for k, v in st.secrets.items():
+                if k not in os.environ and isinstance(v, (str, int, float, bool)):
+                    os.environ[k] = str(v)
     except Exception:
-        pass  # Non-fatal; app still starts with the environment defaults
+        pass
 
 
 _load_dotenv()

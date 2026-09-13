@@ -141,6 +141,13 @@ class GroqProvider(LLMProvider):
             self._api_key = api_key.strip()
         else:
             self._api_key = os.environ.get("GROQ_API_KEY", "").strip()
+            if not self._api_key:
+                try:
+                    import streamlit as st
+                    if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+                        self._api_key = str(st.secrets["GROQ_API_KEY"]).strip()
+                except Exception:
+                    pass
         self._model = model or self.DEFAULT_MODEL
         self._endpoint_url = endpoint_url or self.DEFAULT_URL
 
@@ -262,6 +269,13 @@ class GeminiProvider(LLMProvider):
             self._api_key = api_key.strip()
         else:
             self._api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+            if not self._api_key:
+                try:
+                    import streamlit as st
+                    if hasattr(st, "secrets") and "GEMINI_API_KEY" in st.secrets:
+                        self._api_key = str(st.secrets["GEMINI_API_KEY"]).strip()
+                except Exception:
+                    pass
         self._model = model or self.DEFAULT_MODEL
         self._base_url = base_url or self.DEFAULT_BASE_URL
 
