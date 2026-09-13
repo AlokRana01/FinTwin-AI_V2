@@ -2,7 +2,6 @@
 
 <img src="assets/logos/1_horizontal.svg" width="380" alt="FinTwin AI Logo"/>
 
-# FinTwin AI
 ### AI-Powered Financial Health Digital Twin with Multi-Agent Intelligence
 
 <p>
