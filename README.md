@@ -15,7 +15,7 @@
 [![SHAP](https://img.shields.io/badge/SHAP-Explainable_AI-7C3AED?style=for-the-badge)](https://shap.readthedocs.io)
 [![SQLite](https://img.shields.io/badge/SQLite-Persistence-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
 [![Architecture](https://img.shields.io/badge/Architecture-6--Agent_System-10B981?style=for-the-badge)](#-multi-agent-architecture)
-[![Tests](https://img.shields.io/badge/Tests-341_Passed-2EA44F?style=for-the-badge)](#-testing)
+[![Tests](https://img.shields.io/badge/Tests-375_Passed-2EA44F?style=for-the-badge)](#-testing)
 [![Status](https://img.shields.io/badge/Status-Production_Ready-111827?style=for-the-badge)](#-project-status)
 
 <br/>
@@ -483,7 +483,7 @@ FinTwin-AI_V2/
 │   ├── validators.py              # Strict financial input validation
 │   └── visualizer.py              # Interactive Plotly charts & dashboards
 │
-├── tests/                         # 25 automated regression & integration test suites
+├── tests/                         # 26 automated regression & integration test suites
 │   ├── test_agent_chat_adapter.py
 │   ├── test_agent_schemas.py
 │   ├── test_auth_security.py
@@ -508,7 +508,8 @@ FinTwin-AI_V2/
 │   ├── test_privacy_security.py
 │   ├── test_risk_behaviour_agent.py
 │   ├── test_scenario_simulation.py
-│   └── test_tool_registry.py
+│   ├── test_tool_registry.py
+│   └── test_visualizer.py
 │
 ├── scripts/                       # Maintenance & administration scripts
 │   ├── clear_registered_users.py
@@ -537,7 +538,7 @@ FinTwin-AI_V2/
 | **Authentication** | Argon2-based password hashing |
 | **PDF Reports** | ReportLab |
 | **AI Providers** | Groq, Google Gemini (with deterministic fallbacks) |
-| **Testing** | Pytest (25 test suites, 341 passed) |
+| **Testing** | Pytest (26 test suites, 375 passed) |
 | **Model Storage** | Pre-trained JSON artifacts |
 | **Architecture** | Custom lightweight multi-agent orchestration |
 
@@ -650,7 +651,7 @@ pytest -q
 Current validated baseline:
 
 ```text
-341 passed
+375 passed
 1 warning
 0 failed
 0 skipped
@@ -765,7 +766,7 @@ Authoritative results carry provenance information so the system can distinguish
 | Security & Session Isolation | ✅ Validated |
 | Quota Concurrency | ✅ Validated |
 | Performance Optimization | ✅ Validated |
-| Automated Tests | ✅ 341 Passed |
+| Automated Tests | ✅ 375 Passed |
 | Browser Smoke Testing | ✅ Validated |
 | Production Deployment Validation | ✅ Complete |
 

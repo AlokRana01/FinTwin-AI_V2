@@ -126,35 +126,6 @@ class PlotlyVisualizer:
         )
         return fig
 
-    @staticmethod
-    def plot_forecast_trajectories(df_projections: pd.DataFrame) -> go.Figure:
-        """
-        Plots the 5-year forecasted trajectories (Base, Optimistic, Pessimistic).
-        """
-        fig = go.Figure()
-        
-        if not df_projections.empty and "Year" in df_projections.columns:
-            for col in ["Base Case", "Optimistic Scenario", "Pessimistic Scenario"]:
-                if col in df_projections.columns:
-                    fig.add_trace(go.Scatter(
-                        x=df_projections["Year"],
-                        y=df_projections[col],
-                        mode='lines+markers',
-                        name=col,
-                        line_shape='spline'
-                    ))
-                    
-        fig.update_layout(
-            title="5-Year Net Worth Trajectory",
-            xaxis_title="Timeline (Years)",
-            yaxis_title="Estimated Net Worth (₹)",
-            paper_bgcolor='rgba(0,0,0,0)',
-            plot_bgcolor='rgba(0,0,0,0)',
-            font={'color': "#F3F4F6", 'family': "Outfit, Inter, sans-serif"},
-            height=350,
-            margin=dict(l=20, r=20, t=40, b=20)
-        )
-        return fig
 
     @staticmethod
     def plot_peer_comparison(user_spend: Dict[str, float], peer_avg_spend: Dict[str, float]) -> go.Figure:
@@ -409,7 +380,7 @@ class PlotlyVisualizer:
             marker_color="#64748B",
             text=[f"{v:.1f}%" for v in cluster_data],
             textposition="outside",
-            hovertemplate=f"<b>%{x}</b><br>{personality_label} Avg: %{y:.1f}%<extra></extra>",
+            hovertemplate=f"<b>%{{x}}</b><br>{personality_label} Avg: %{{y:.1f}}%<extra></extra>",
         ))
 
         fig.update_layout(
@@ -805,9 +776,15 @@ class PlotlyVisualizer:
         prediction = force_data.get("prediction", 50.0)
         all_sorted = force_data.get("all_sorted", [])
 
+        def _get_comp(c):
+            return getattr(c, "component", c.get("component", "") if isinstance(c, dict) else str(c))
+
+        def _get_contrib(c):
+            return float(getattr(c, "contribution", c.get("contribution", 0.0) if isinstance(c, dict) else 0.0))
+
         # Build waterfall: baseline → each contribution → prediction
-        labels = ["Baseline"] + [c.component for c in all_sorted] + ["Final Score"]
-        values = [baseline]   + [c.contribution for c in all_sorted] + [0]
+        labels = ["Baseline"] + [_get_comp(c) for c in all_sorted] + ["Final Score"]
+        values = [baseline]   + [_get_contrib(c) for c in all_sorted] + [0]
         measure = ["absolute"] + ["relative"] * len(all_sorted) + ["total"]
 
         colors = []
@@ -817,13 +794,14 @@ class PlotlyVisualizer:
             elif m == "total":
                 colors.append("#F59E0B")   # amber for final
             else:
-                c = all_sorted[i - 1]
-                colors.append("#10B981" if c.contribution >= 0 else "#EF4444")
+                contrib = _get_contrib(all_sorted[i - 1])
+                colors.append("#10B981" if contrib >= 0 else "#EF4444")
 
         text_labels = [f"{baseline:.1f}"]
         for c in all_sorted:
-            sign = "+" if c.contribution >= 0 else ""
-            text_labels.append(f"{sign}{c.contribution:.1f} {unit}")
+            contrib = _get_contrib(c)
+            sign = "+" if contrib >= 0 else ""
+            text_labels.append(f"{sign}{contrib:.1f} {unit}")
         text_labels.append(f"{prediction:.1f}")
 
         fig = go.Figure(go.Waterfall(
